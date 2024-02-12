@@ -1,0 +1,28 @@
+spring:
+ application:
+  name: apigateway
+ cloud:
+  gateway:
+   routes:
+    - id: userservice
+      uri: lb://userservice
+      predicates:
+      - Path=/users/**
+    - id: ratingservice
+      uri: lb://ratingservice
+      predicates:
+      - Path=/ratings/**
+    - id: hotelservice
+      uri: lb://hotelservice
+      predicates:
+      - Path=/hotels/**
+  discovery:
+   enabled: true
+server:
+ port: 9091
+eureka:
+ client:
+  eureka-server-port: 8761
+  
+
+
